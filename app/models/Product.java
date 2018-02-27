@@ -15,14 +15,16 @@ public class Product extends Model {
         private Long id;
         @Constraints.Required
         private String name;
-        @ManyToOne
-        private Category category;
+        @ManyToMany(cascade = CascadeType.All, mappedBy = "products")
+        public List<Category> categories;
         @Constraints.Required
         private String description; 
         @Constraints.Required
         private int stock; 
         @Constraints.Required
         private double price; 
+        public List<Long> catSelect = new ArrayList<Long>();
+
 
         public static final Finder<Long, Product> find = new Finder<>(Product.class);
     
@@ -59,6 +61,9 @@ public class Product extends Model {
         }
         public Category getCategory() {
             return category;
+        }
+        public.inCategory(value.toLong, id){
+            return Category;
         }
         
         public void setCategory(Category c) {
